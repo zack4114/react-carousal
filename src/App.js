@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Carousal from './carousal';
+
+const CAROUSAL_DATA = [
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?a=12'},
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?b=13'},
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?c=14'},
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?d=15'},
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?e=16'},
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?f=17'},
+  {imageUri:'https://source.unsplash.com/user/erondu/640x360?g=8'}
+]
 
 function App() {
+  const renderItem = ({item, index})=>{
+    return <div>
+      <img src={item.imageUri} alt={item.imageUri} style={{objectFit:'cover'}}/>
+    </div>
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Carousal data={CAROUSAL_DATA} renderItem={renderItem}/>
     </div>
   );
 }

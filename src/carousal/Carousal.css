@@ -1,0 +1,77 @@
+.carousal-container {
+    overflow: hidden;
+    height:360px;
+    width:640px;
+    position:relative;
+}
+
+.carousal-item {
+    min-height:360px;
+    min-width:640px;
+    overflow: hidden;
+}
+
+.carousal-overlay {
+    position:absolute;
+    height:100%;
+    width:100%;
+    z-index: 1;
+    background-color:rgba(255,255,255, 0.3);
+}
+
+button {
+    background-color: rgba(0,0,0,0.4);
+    height:60px;
+    width:50px;
+    border:none;
+    color:#FFF;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: rgba(255,255,255,0.3);
+}
+
+
+.prev-button {
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.next-button {
+    position:absolute;
+    top:50%;
+    right:0;
+    transform: translateY(-50%);
+}
+
+.dot {
+    height:10px;
+    width:10px;
+    border-radius:5px;
+    background-color: rgba(0,0,0,0.5);
+    transition: all 250ms;
+}
+
+.dot-active {
+    background-color:rgba(255,255,255);
+}
+
+.carousal-data-container {
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+    transition: all 250ms;
+}
+
+.dot-container {
+    display:flex;
+    flex-direction:row;
+    gap:8px;
+    position: absolute;
+    bottom:20px;
+    left:50%;
+    transform: translateX(-50%)
+}
