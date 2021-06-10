@@ -2,20 +2,39 @@ import './App.css';
 import Carousal from './carousal';
 
 const CAROUSAL_DATA = [
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?a=12'},
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?b=13'},
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?c=14'},
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?d=15'},
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?e=16'},
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?f=17'},
-  {imageUri:'https://source.unsplash.com/user/erondu/640x360?g=8'}
+  {data:{imgUri: 'https://source.unsplash.com/user/erondu/640x360?a=12'}, type:'IMAGE'},
+  {data:{heading: 'Heading', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"}, type:'DIV'},
+  {data:{imgUri: 'https://source.unsplash.com/user/erondu/640x360?c=12'}, type:'IMAGE'},
+  {data:{text:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"}, type:'TEXT'},
 ]
+
+//can have mapping of components rather than using switch case.
+// const componentMap = {
+//   'IMAGE': ImageComponent,
+//   'DIV': DivComponent,
+//   'TEXT': TextComponent,
+//   etc...
+// }
 
 function App() {
   const renderItem = ({item, index})=>{
-    return <div>
-      <img src={item.imageUri} alt={item.imageUri} style={{objectFit:'cover'}}/>
-    </div>
+    switch(item.type) {
+      case 'IMAGE':
+        return <div>
+          <img src={item?.data?.imgUri} alt={item?.data?.imgUri} style={{objectFit:'cover'}}/>
+        </div>
+      case 'DIV':
+        return <div>
+          <h1>{item?.data?.heading}</h1>
+          <p>{item?.data?.text}</p>
+        </div>
+      case 'TEXT':
+        return <div>
+          <p>{item?.data?.text}</p>
+        </div>
+      default:
+        return null
+    }
   }
   return (
     <div className="App">
