@@ -1,5 +1,14 @@
+import React from 'react'
 import './App.css';
 import Carousal from './carousal';
+
+//added code splitting, so it will not send the component to client side if that component is not needed
+//preventing the unnecessary increase in bundle size
+import withLazyLoding from './withLazyLoding';
+const CarousalImageComponent = withLazyLoding(React.lazy(() => import("./CarousalImageComponent")))
+const CarousalDivComponent = withLazyLoding(React.lazy(() => import("./CarousalDivComponent")))
+const CarousalTextComponent = withLazyLoding(React.lazy(() => import("./CarousalTextComponent")))
+
 
 const CAROUSAL_DATA = [
   {data:{imgUri: 'https://source.unsplash.com/user/erondu/640x360?a=12'}, type:'IMAGE'},
@@ -20,18 +29,11 @@ function App() {
   const renderItem = ({item, index})=>{
     switch(item.type) {
       case 'IMAGE':
-        return <div>
-          <img src={item?.data?.imgUri} alt={item?.data?.imgUri} style={{objectFit:'cover'}}/>
-        </div>
+        return <CarousalImageComponent data={item}/>
       case 'DIV':
-        return <div>
-          <h1>{item?.data?.heading}</h1>
-          <p>{item?.data?.text}</p>
-        </div>
+        return <CarousalDivComponent data={item}/>
       case 'TEXT':
-        return <div>
-          <p>{item?.data?.text}</p>
-        </div>
+        return <CarousalTextComponent data={item}/>
       default:
         return null
     }
